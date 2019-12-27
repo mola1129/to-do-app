@@ -28,6 +28,11 @@ const routes = [
     name: 'signup',
     component: () => import(/* webpackChunkName: "about" */ '../views/SignUp.vue'),
   },
+  {
+    path: '/todo',
+    name: 'todo',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ToDo.vue'),
+  },
 ];
 
 const router = new VueRouter({

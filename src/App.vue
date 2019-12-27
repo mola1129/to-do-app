@@ -38,6 +38,12 @@
         >
          <span>About</span>
         </v-btn>
+        <v-btn
+          text
+          to="/todo"
+        >
+          <span>To Do</span>
+        </v-btn>
       </div>
     </v-app-bar>
     <v-content>
