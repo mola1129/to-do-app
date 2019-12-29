@@ -16,14 +16,7 @@ export default {
   components: {
     ToDoItem,
   },
-  data() {
-    return {
-      todos: [
-        { id: 1, title: 'test1' },
-        { id: 2, title: 'test2' },
-      ],
-    };
-  },
+  props: ['todos'],
 };
 </script>
 
