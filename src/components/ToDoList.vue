@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <ul>
-      <li v-for="todo in todos" :key="todo.id">
-        <to-do-item :title="todo.title"/>
+      <li v-for="(todo, index) in todos" :key="todo.id">
+        <to-do-item :title="todo.title" @delete="deleteItem(index)"/>
       </li>
     </ul>
   </v-container>
@@ -17,6 +17,11 @@ export default {
     ToDoItem,
   },
   props: ['todos'],
+  methods: {
+    deleteItem(index) {
+      this.$emit('delete', index);
+    },
+  },
 };
 </script>
 

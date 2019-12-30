@@ -10,7 +10,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <to-do-list :todos="todos"/>
+    <to-do-list :todos="todos" @delete="deleteItem"/>
   </div>
 </template>
 
@@ -32,8 +32,16 @@ export default {
   },
   methods: {
     addItem() {
-      this.todos.push({ id: this.todos.length + 1, title: this.newItem });
+      if (this.newItem === '') { return; }
+      let newId = 0;
+      if (this.todos.length > 0) {
+        newId = this.todos[this.todos.length - 1].id + 1;
+      }
+      this.todos.push({ id: newId, title: this.newItem });
       this.newItem = '';
+    },
+    deleteItem(index) {
+      this.todos.splice(index, 1);
     },
   },
   components: {
