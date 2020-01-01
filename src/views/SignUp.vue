@@ -6,16 +6,41 @@
         <v-card class="elevation-12">
           <v-card-text>
             <v-form>
-              <v-text-field label="Username" name="login" type="text"/>
-              <v-text-field label="Password" name="password" type="password"/>
+              <v-text-field label="Email" type="text" v-model="email"/>
+              <v-text-field label="Password" type="password" v-model="password"/>
             </v-form>
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn color="red">Register</v-btn>
+            <v-btn color="red" @click="signUp">Register</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
+
+<script>
+import firebase from 'firebase';
+
+export default {
+  name: 'SignUp',
+  data() {
+    return {
+      email: '',
+      password: '',
+    };
+  },
+  methods: {
+    signUp() {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+      });
+    },
+  },
+};
+</script>
