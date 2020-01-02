@@ -2,7 +2,6 @@ import Vue from 'vue';
 import firebase from 'firebase';
 import App from './App.vue';
 import router from './router';
-import store from './store';
 import vuetify from './plugins/vuetify';
 
 // Your web app's Firebase configuration
@@ -24,7 +23,6 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
-  store,
   vuetify,
   render: h => h(App),
 }).$mount('#app');
