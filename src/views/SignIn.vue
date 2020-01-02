@@ -33,13 +33,19 @@ export default {
   },
   methods: {
     signIn() {
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        Console.log(errorCode);
-        Console.log(errorMessage);
-      });
+      firebase.auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(
+          (user) => {
+            console.log(`${user} sign in.`);
+            this.$router.push('/todo');
+          },
+        ).catch(
+          (e) => {
+            console.error(e.message);
+            console.error(e.code);
+          },
+        );
     },
   },
 };
