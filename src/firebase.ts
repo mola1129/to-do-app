@@ -20,18 +20,7 @@ export default {
     firebase.analytics();
   },
   loginWithEmail(email:string, password:string) {
-    firebase.auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(
-        (user) => {
-          console.log(`${user} sign in.`);
-        },
-      ).catch(
-        (e) => {
-          console.error(e.message);
-          console.error(e.code);
-        },
-      );
+    firebase.auth().signInWithEmailAndPassword(email, password);
   },
   logout() {
     firebase.auth().signOut().then(
