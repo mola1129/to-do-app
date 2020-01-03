@@ -2,6 +2,11 @@
   <div class="todo">
     <v-container>
       <v-row justify="center" align="center">
+        <v-col cols="8">
+          <h1>{{ user.email }}</h1>
+        </v-col>
+      </v-row>
+      <v-row justify="center" align="center">
         <v-col cols="7">
           <v-text-field v-model="newItem" placeholder="New To Do"/>
         </v-col>
@@ -15,7 +20,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import ToDoList from '@/components/ToDoList.vue';
 
 export default {
@@ -29,6 +33,11 @@ export default {
         { id: 3, title: 'test3' },
       ],
     };
+  },
+  computed: {
+    user() {
+      return this.$store.getters.getUserInfo;
+    },
   },
   methods: {
     addItem() {
