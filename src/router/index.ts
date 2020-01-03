@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import firebase from 'firebase';
-import Home from '@/views/Home.vue';
-import About from '@/views/About.vue';
 import SignIn from '@/views/SignIn.vue';
 import SignUp from '@/views/SignUp.vue';
 import ToDo from '@/views/ToDo.vue';
@@ -11,14 +9,12 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: Home,
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: About,
+    path: '*',
+    name: 'todo',
+    component: ToDo,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: '/signin',
@@ -29,14 +25,6 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignUp,
-  },
-  {
-    path: '/todo',
-    name: 'todo',
-    component: ToDo,
-    meta: {
-      requiresAuth: true,
-    },
   },
 ];
 
