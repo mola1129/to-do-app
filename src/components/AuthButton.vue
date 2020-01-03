@@ -35,9 +35,6 @@ export default {
     Firebase.onAuth();
   },
   computed: {
-    user() {
-      return this.$store.getters.user;
-    },
     userStatus() {
       return this.$store.getters.isSignedIn;
     },
