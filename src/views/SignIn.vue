@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import firebase from 'firebase';
+import Firebase from '@/firebase';
 
 export default {
   name: 'SignIn',
@@ -33,19 +33,8 @@ export default {
   },
   methods: {
     signIn() {
-      firebase.auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(
-          (user) => {
-            console.log(`${user} sign in.`);
-            this.$router.push('/todo');
-          },
-        ).catch(
-          (e) => {
-            console.error(e.message);
-            console.error(e.code);
-          },
-        );
+      Firebase.loginWithEmail(this.email, this.password);
+      this.$router.push('/todo');
     },
   },
 };
