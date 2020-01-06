@@ -21,6 +21,7 @@
 
 <script>
 import ToDoList from '@/components/ToDoList.vue';
+import Firebase from '@/firebase';
 
 export default {
   name: 'todo',
@@ -42,11 +43,8 @@ export default {
   methods: {
     addItem() {
       if (this.newItem === '') { return; }
-      let newId = 0;
-      if (this.todos.length > 0) {
-        newId = this.todos[this.todos.length - 1].id + 1;
-      }
-      this.todos.push({ id: newId, title: this.newItem });
+      console.log(`uid: ${this.user.uid}`);
+      Firebase.addTodoItem(this.user.uid, this.newItem);
       this.newItem = '';
     },
     deleteItem(index) {

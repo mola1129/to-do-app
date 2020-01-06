@@ -45,4 +45,17 @@ export default {
       store.commit('onUserStatusChanged', !!user.uid);
     });
   },
+  addTodoItem(userId:string, title:string) {
+    const db = firebase.firestore();
+    const todosRef = db.collection('users').doc(userId).collection('todos');
+    todosRef.add({
+      title,
+    })
+      .then((docRef) => {
+        console.log('Document written with ID: ', docRef.id);
+      })
+      .catch((error) => {
+        console.error('Error adding document: ', error);
+      });
+  },
 };
