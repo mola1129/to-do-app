@@ -48,8 +48,9 @@ export default {
   addTodoItem(userId:string, title:string) {
     const db = firebase.firestore();
     const todosRef = db.collection('users').doc(userId).collection('todos');
+    const time = Date.now();
     todosRef.add({
-      title,
+      title, time,
     })
       .then((docRef) => {
         console.log('Document written with ID: ', docRef.id);
