@@ -1,9 +1,11 @@
 <template>
   <v-app>
-    <nav-bar/>
-    <v-content>
-      <router-view/>
-    </v-content>
+      <nav-bar/>
+      <v-content>
+        <transition name="fade">
+          <router-view/>
+        </transition>
+      </v-content>
   </v-app>
 </template>
 
@@ -18,3 +20,12 @@ export default Vue.extend({
   }),
 });
 </script>
+
+<style>
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+</style>

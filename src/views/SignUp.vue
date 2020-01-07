@@ -12,7 +12,11 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn color="red" @click="signUp">Register</v-btn>
+            <v-btn color="red" @click="signUp">
+              <div v-if="!this.isWaiting">Register</div>
+              <v-progress-circular v-else color="white" indeterminate>
+              </v-progress-circular>
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -29,10 +33,12 @@ export default {
     return {
       email: '',
       password: '',
+      isWaiting: false,
     };
   },
   methods: {
     signUp() {
+      this.isWaiting = true;
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
         (user) => {
           console.log('Success !!');
@@ -40,8 +46,8 @@ export default {
         },
       ).catch(
         (e) => {
-          console.error(e.message);
-          console.error(e.code);
+          this.isWaiting = false;
+          console.error('既に登録済みのメールアドレスです');
         },
       );
     },

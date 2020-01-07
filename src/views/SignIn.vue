@@ -12,7 +12,11 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer />
-              <v-btn color="primary" @click="signIn">Login</v-btn>
+              <v-btn color="primary" @click="signIn">
+                <div v-if="!this.isWaiting">Login</div>
+                <v-progress-circular v-else color="white" indeterminate>
+                </v-progress-circular>
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -29,12 +33,18 @@ export default {
     return {
       email: '',
       password: '',
+      isWaiting: false,
     };
   },
   methods: {
     signIn() {
-      Firebase.loginWithEmail(this.email, this.password);
-      this.$router.push('/todo');
+      this.isWaiting = true;
+      Firebase.loginWithEmail(this.email, this.password).then(() => {
+        this.$router.push('/todo');
+      }).catch((e) => {
+        this.isWaiting = false;
+        console.error('新規登録して下さい');
+      });
     },
   },
 };
