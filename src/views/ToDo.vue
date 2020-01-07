@@ -35,7 +35,7 @@ export default {
   created() {
     const db = firebase.firestore();
     const todosRef = db.collection('users').doc(this.user.uid).collection('todos');
-    todosRef.onSnapshot((doc) => {
+    todosRef.orderBy('time', 'desc').onSnapshot((doc) => {
       const newTodos = [];
       doc.docs.forEach((d) => {
         newTodos.push({
