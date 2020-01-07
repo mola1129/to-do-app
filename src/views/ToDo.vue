@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import firebase from 'firebase';
 import ToDoList from '@/components/ToDoList.vue';
 import Firebase from '@/firebase';
 
@@ -28,12 +29,24 @@ export default {
   data() {
     return {
       newItem: '',
-      todos: [
-        { id: 1, title: 'test1' },
-        { id: 2, title: 'test2' },
-        { id: 3, title: 'test3' },
-      ],
+      todos: [],
     };
+  },
+  created() {
+    const db = firebase.firestore();
+    const todosRef = db.collection('users').doc(this.user.uid).collection('todos');
+    todosRef.onSnapshot((doc) => {
+      const newTodos = [];
+      doc.docs.forEach((d) => {
+        newTodos.push({
+          id: d.id,
+          title: d.data().title,
+        });
+      });
+      this.todos = newTodos;
+    }, (error) => {
+      // エラー処理
+    });
   },
   computed: {
     user() {
@@ -43,7 +56,6 @@ export default {
   methods: {
     addItem() {
       if (this.newItem === '') { return; }
-      console.log(`uid: ${this.user.uid}`);
       Firebase.addTodoItem(this.user.uid, this.newItem);
       this.newItem = '';
     },
