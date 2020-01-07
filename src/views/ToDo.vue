@@ -20,19 +20,33 @@
 </template>
 
 <script>
+import firebase from 'firebase';
 import ToDoList from '@/components/ToDoList.vue';
+import Firebase from '@/firebase';
 
 export default {
   name: 'todo',
   data() {
     return {
       newItem: '',
-      todos: [
-        { id: 1, title: 'test1' },
-        { id: 2, title: 'test2' },
-        { id: 3, title: 'test3' },
-      ],
+      todos: [],
     };
+  },
+  created() {
+    const db = firebase.firestore();
+    const todosRef = db.collection('users').doc(this.user.uid).collection('todos');
+    todosRef.onSnapshot((doc) => {
+      const newTodos = [];
+      doc.docs.forEach((d) => {
+        newTodos.push({
+          id: d.id,
+          title: d.data().title,
+        });
+      });
+      this.todos = newTodos;
+    }, (error) => {
+      // エラー処理
+    });
   },
   computed: {
     user() {
@@ -42,15 +56,11 @@ export default {
   methods: {
     addItem() {
       if (this.newItem === '') { return; }
-      let newId = 0;
-      if (this.todos.length > 0) {
-        newId = this.todos[this.todos.length - 1].id + 1;
-      }
-      this.todos.push({ id: newId, title: this.newItem });
+      Firebase.addTodoItem(this.user.uid, this.newItem);
       this.newItem = '';
     },
-    deleteItem(index) {
-      this.todos.splice(index, 1);
+    deleteItem(todoId) {
+      Firebase.deleteTodoItem(this.user.uid, todoId);
     },
   },
   components: {
