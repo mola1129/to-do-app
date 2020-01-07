@@ -58,4 +58,9 @@ export default {
         console.error('Error adding document: ', error);
       });
   },
+  deleteTodoItem(userId:string, todoId: string) {
+    const db = firebase.firestore();
+    const todosRef = db.collection('users').doc(userId).collection('todos').doc(todoId);
+    todosRef.delete();
+  },
 };

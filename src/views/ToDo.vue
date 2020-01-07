@@ -59,8 +59,8 @@ export default {
       Firebase.addTodoItem(this.user.uid, this.newItem);
       this.newItem = '';
     },
-    deleteItem(index) {
-      this.todos.splice(index, 1);
+    deleteItem(todoId) {
+      Firebase.deleteTodoItem(this.user.uid, todoId);
     },
   },
   components: {
