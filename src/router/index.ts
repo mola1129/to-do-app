@@ -34,11 +34,15 @@ const router = new VueRouter({
   routes,
 });
 
+let onAuthStateChangedUnsubscribe: any;
 // 未認証の場合はログイン画面へ
 router.beforeEach((to, from, next) => {
   // 認証が必要なページがチェック
+  if (typeof onAuthStateChangedUnsubscribe === 'function') {
+    onAuthStateChangedUnsubscribe();
+  }
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    firebase.auth().onAuthStateChanged((user) => {
+    onAuthStateChangedUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log('認証中');
         next();

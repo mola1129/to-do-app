@@ -36,13 +36,11 @@ export default {
   },
   onAuth() {
     firebase.auth().onAuthStateChanged((user) => {
-      // eslint-disable-next-line no-param-reassign
-      // @ts-ignore
-      // eslint-disable-next-line no-param-reassign
-      user = user || {};
-      store.commit('onAuthStateChanged', user);
-      // @ts-ignore
-      store.commit('onUserStatusChanged', !!user.uid);
+      const currentUser = user || {
+        uid: undefined,
+      };
+      store.commit('onAuthStateChanged', currentUser);
+      store.commit('onUserStatusChanged', currentUser.uid);
     });
   },
   addTodoItem(userId:string, title:string) {
