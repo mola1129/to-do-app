@@ -3,6 +3,7 @@
     app
     color="primary"
     dark
+    elevation="1"
   >
     <div class="d-flex align-center">
       <router-link to="/">
