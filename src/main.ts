@@ -8,6 +8,7 @@ import Firebase from './firebase';
 
 Vue.config.productionTip = false;
 Firebase.init();
+Firebase.onAuth();
 
 new Vue({
   router,

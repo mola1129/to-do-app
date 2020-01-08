@@ -31,9 +31,6 @@ import Firebase from '../firebase';
 
 export default {
   name: 'AuthButton',
-  created() {
-    Firebase.onAuth();
-  },
   computed: {
     userStatus() {
       return this.$store.getters.isSignedIn;
