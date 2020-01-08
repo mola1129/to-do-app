@@ -3,18 +3,12 @@
     app
     color="primary"
     dark
+    elevation="1"
   >
     <div class="d-flex align-center">
-      <router-link to="/">
-        <v-img
-          alt="Mola1129 Logo"
-          class="shrink mr-2"
-          contain
-          :src="require('@/assets/mola.png')"
-          transition="scale-transition"
-          width="40"
-        />
-      </router-link>
+      <v-btn icon large href="https://github.com/mola1129/to-do-app" target="_blank">
+        <v-icon>fab fa-github</v-icon>
+      </v-btn>
     </div>
     <v-spacer/>
     <auth-button/>
