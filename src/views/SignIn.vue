@@ -51,7 +51,6 @@ export default {
         }, 800);
       }).catch((e) => {
         this.isLoading = false;
-        console.error('新規登録して下さい');
       });
     },
   },

@@ -37,13 +37,11 @@ export default {
       this.isLoading = true;
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
         (user) => {
-          console.log('Success !!');
           this.$router.push('/todo');
         },
       ).catch(
         (e) => {
           this.isLoading = false;
-          console.error('既に登録済みのメールアドレスです');
         },
       );
     },
