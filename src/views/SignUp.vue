@@ -23,6 +23,7 @@
               <v-text-field
                 label="Password"
                 type="password"
+                :counter="10"
                 :rules="passwordRules"
                 v-model="password"
               />
@@ -63,7 +64,7 @@ export default {
       ],
       passwordRules: [
         v => !!v || 'Password is required',
-        v => (v && v.length >= 8) || 'Password must be more than 8 characters',
+        v => (v && v.length <= 10) || 'Password must be less than 10 characters',
       ],
     };
   },
