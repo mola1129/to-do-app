@@ -45,10 +45,8 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     onAuthStateChangedUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log('認証中');
         next();
       } else {
-        console.log('未認証');
         next({ path: '/signin' });
       }
     });
