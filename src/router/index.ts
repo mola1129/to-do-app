@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 import SignIn from '@/views/SignIn.vue';
 import SignUp from '@/views/SignUp.vue';
 import ToDo from '@/views/ToDo.vue';
