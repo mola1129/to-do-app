@@ -5,14 +5,40 @@
       <v-col cols="12" sm="6" md="4">
         <v-card class="elevation-12">
           <v-card-text>
-            <v-form>
-              <v-text-field label="Email" type="text" v-model="email"/>
-              <v-text-field label="Password" type="password" v-model="password"/>
+            <v-alert
+              type="error"
+              v-if="isUsedEmail"
+            >
+              The email address is already in use.
+            </v-alert>
+            <v-form
+              v-model="valid"
+              lazy-validation
+            >
+              <v-text-field
+                label="Email"
+                type="text"
+                :rules="emailRules"
+                v-model="email"
+              />
+              <v-text-field
+                label="Password"
+                type="password"
+                :rules="passwordRules"
+                v-model="password"
+              />
             </v-form>
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn color="red" @click="signUp" :loading="isLoading" dark>Register</v-btn>
+            <v-btn
+              color="red"
+              @click="signUp"
+              :loading="isLoading"
+              :disabled="!valid"
+            >
+              Register
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -30,6 +56,16 @@ export default {
       email: '',
       password: '',
       isLoading: false,
+      valid: true,
+      isUsedEmail: false,
+      emailRules: [
+        v => !!v || 'Email is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      ],
+      passwordRules: [
+        v => !!v || 'Password is required',
+        v => (v && v.length >= 8) || 'Password must be more than 8 characters',
+      ],
     };
   },
   methods: {
@@ -41,6 +77,7 @@ export default {
         },
       ).catch(
         (e) => {
+          this.isUsedEmail = true;
           this.isLoading = false;
         },
       );
