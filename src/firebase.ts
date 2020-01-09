@@ -1,4 +1,7 @@
-import firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/analytics';
 import store from './store';
 
 // Your web app's Firebase configuration
@@ -25,12 +28,9 @@ export default {
   logout() {
     firebase.auth().signOut().then(
       (user) => {
-        console.log(`${user} sign out.`);
       },
     ).catch(
       (e) => {
-        console.error(e.message);
-        console.error(e.code);
       },
     );
   },
@@ -51,10 +51,8 @@ export default {
       title, time,
     })
       .then((docRef) => {
-        console.log('Document written with ID: ', docRef.id);
       })
       .catch((error) => {
-        console.error('Error adding document: ', error);
       });
   },
   deleteTodoItem(userId:string, todoId: string) {

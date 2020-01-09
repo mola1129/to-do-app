@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 import SignIn from '@/views/SignIn.vue';
 import SignUp from '@/views/SignUp.vue';
 import ToDo from '@/views/ToDo.vue';
@@ -44,10 +45,8 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     onAuthStateChangedUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log('認証中');
         next();
       } else {
-        console.log('未認証');
         next({ path: '/signin' });
       }
     });
