@@ -13,7 +13,6 @@
             </v-alert>
             <v-form
               v-model="valid"
-              lazy-validation
             >
               <v-text-field
                 label="Email"
