@@ -5,13 +5,29 @@
         <v-col cols="12" sm="8" md="4" lg="4">
           <v-card class="elevation-1 pa-3">
             <v-card-text>
-            <div class="layout column align-center">
-              <v-img src="../assets/mola2.png" height="120px" width="120px"/>
-              <h1 class="ma-3">To Do App</h1>
-            </div>
-              <v-form>
-                <v-text-field label="Email" type="text" v-model="email"/>
-                <v-text-field label="Password" type="password" v-model="password"/>
+              <div class="layout column align-center">
+                <v-img src="../assets/mola2.png" height="120px" width="120px"/>
+                <h1 class="ma-4">To Do App</h1>
+              </div>
+              <v-alert
+                type="error"
+                v-if="!isExist"
+              >
+                The email or password is incorrect.
+              </v-alert>
+              <v-form
+                v-model="valid"
+              >
+                <v-text-field
+                  label="Email"
+                  type="text"
+                  :rules="emailRules"
+                  v-model="email"/>
+                <v-text-field
+                  label="Password"
+                  type="password"
+                  :rules="passwordRules"
+                  v-model="password"/>
               </v-form>
             </v-card-text>
             <v-card-actions>
@@ -22,7 +38,14 @@
                   <v-icon color="light-blue">fab fa-twitter</v-icon>
                 </v-btn>
                 <v-spacer />
-                <v-btn color="primary" @click="signIn" :loading="isLoading">Login</v-btn>
+                <v-btn
+                  color="primary"
+                  @click="signIn"
+                  :loading="isLoading"
+                  :disabled="!valid"
+                >
+                  Login
+                </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -40,6 +63,14 @@ export default {
       email: '',
       password: '',
       isLoading: false,
+      isExist: true,
+      valid: true,
+      emailRules: [
+        v => !!v || '',
+      ],
+      passwordRules: [
+        v => !!v || '',
+      ],
     };
   },
   methods: {
@@ -50,8 +81,8 @@ export default {
           this.$router.push('/todo');
         }, 800);
       }).catch((e) => {
+        this.isExist = false;
         this.isLoading = false;
-        console.error('新規登録して下さい');
       });
     },
   },
