@@ -6,7 +6,7 @@
           <v-card class="elevation-1 pa-3">
             <v-card-text>
               <div class="layout column align-center">
-                <v-img src="../assets/mola2.png" height="120px" width="120px"/>
+                <v-img src="@/assets/mola.png" height="120px" width="120px"/>
                 <h1 class="ma-4">To Do App</h1>
               </div>
               <v-alert
