@@ -39,12 +39,13 @@
                 </v-btn>
                 <v-spacer />
                 <v-btn
-                  color="primary"
+                  class="white--text"
+                  color="green"
                   @click="signIn"
                   :loading="isLoading"
                   :disabled="!valid"
                 >
-                  Login
+                  Sign In
                 </v-btn>
             </v-card-actions>
           </v-card>
