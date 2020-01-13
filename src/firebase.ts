@@ -25,6 +25,10 @@ export default {
   loginWithEmail(email:string, password:string) {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   },
+  loginWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    return firebase.auth().signInWithPopup(provider);
+  },
   logout() {
     firebase.auth().signOut().then(
       (user) => {
