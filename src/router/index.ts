@@ -51,7 +51,14 @@ router.beforeEach((to, from, next) => {
       }
     });
   } else {
-    next(); // next() を常に呼び出すようにしてください!
+    onAuthStateChangedUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // ログイン済みユーザはTodoへ飛ばす
+        next({ path: '/todo' });
+      } else {
+        next();
+      }
+    });
   }
 });
 

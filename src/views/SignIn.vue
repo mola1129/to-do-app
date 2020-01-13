@@ -31,7 +31,7 @@
               </v-form>
             </v-card-text>
             <v-card-actions>
-                <v-btn icon>
+                <v-btn icon @click="signInWithGoogle">
                   <v-icon color="red">fab fa-google</v-icon>
                 </v-btn>
                 <v-btn icon>
@@ -84,6 +84,11 @@ export default {
       }).catch((e) => {
         this.isExist = false;
         this.isLoading = false;
+      });
+    },
+    signInWithGoogle() {
+      Firebase.loginWithGoogle().then(() => {
+        this.$router.push('/todo');
       });
     },
   },
