@@ -1,5 +1,5 @@
 # Basic Todo App
-
+![](https://github.com/mola1129/to-do-app/workflows/Build%20and%20Deploy/badge.svg)
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/43176456/72339127-17197880-3709-11ea-9879-f557fe759194.png">
