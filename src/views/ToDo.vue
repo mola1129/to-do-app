@@ -1,21 +1,35 @@
 <template>
   <div class="todo">
     <v-container>
-      <v-row justify="center" align="center">
+      <v-row
+        justify="center"
+        align="center"
+      >
         <v-col cols="8">
           <h1>{{ user.email }}</h1>
         </v-col>
       </v-row>
-      <v-row justify="center" align="center">
+      <v-row
+        justify="center"
+        align="center"
+      >
         <v-col cols="7">
-          <v-text-field v-model="newItem" placeholder="New To Do"/>
+          <v-text-field
+            v-model="newItem"
+            placeholder="New To Do"
+          />
         </v-col>
         <v-col cols="1">
-          <v-btn @click="addItem">Add</v-btn>
+          <v-btn @click="addItem">
+            Add
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>
-    <to-do-list :todos="todos" @delete="deleteItem"/>
+    <to-do-list
+      :todos="todos"
+      @delete="deleteItem"
+    />
   </div>
 </template>
 

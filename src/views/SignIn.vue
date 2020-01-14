@@ -15,21 +15,15 @@
           md="4"
           lg="4"
         >
-          <v-card
-            class="elevation-1 pa-3"
-          >
+          <v-card class="elevation-1 pa-3">
             <v-card-text>
-              <div
-                class="layout column align-center"
-              >
+              <div class="layout column align-center">
                 <v-img
                   src="@/assets/mola.png"
                   height="120px"
                   width="120px"
                   />
-                <h1
-                  class="ma-4"
-                >
+                <h1 class="ma-4">
                   To Do App
                 </h1>
               </div>
@@ -39,9 +33,7 @@
               >
                 The email or password is incorrect.
               </v-alert>
-              <v-form
-                v-model="valid"
-              >
+              <v-form v-model="valid">
                 <v-text-field
                   label="Email"
                   type="text"
@@ -61,9 +53,7 @@
                   icon
                   @click="signInWithGoogle"
                 >
-                  <v-icon
-                    color="red"
-                  >
+                  <v-icon color="red">
                     fab fa-google
                   </v-icon>
                 </v-btn>

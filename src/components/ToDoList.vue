@@ -1,8 +1,14 @@
 <template>
   <v-container>
     <ul>
-      <li v-for="todo in todos" :key="todo.id">
-        <to-do-item :title="todo.title" @delete="deleteItem(todo.id)"/>
+      <li
+        v-for="todo in todos"
+        :key="todo.id"
+      >
+        <to-do-item
+          :title="todo.title"
+          @delete="deleteItem(todo.id)"
+        />
       </li>
     </ul>
   </v-container>
