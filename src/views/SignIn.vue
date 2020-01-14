@@ -1,13 +1,37 @@
 <template>
-    <v-container class="fill-height" fluid>
+    <v-container
+      class="fill-height"
+      fluid
+    >
       <!-- style is for Vuetify's bug (https://github.com/vuetifyjs/vuetify/issues/9773) -->
-      <v-row align="center" justify="center" style="max-width: initial">
-        <v-col cols="12" sm="8" md="4" lg="4">
-          <v-card class="elevation-1 pa-3">
+      <v-row
+        align="center"
+        justify="center"
+        style="max-width: initial"
+      >
+        <v-col
+          cols="12"
+          sm="8"
+          md="4"
+          lg="4"
+        >
+          <v-card
+            class="elevation-1 pa-3"
+          >
             <v-card-text>
-              <div class="layout column align-center">
-                <v-img src="@/assets/mola.png" height="120px" width="120px"/>
-                <h1 class="ma-4">To Do App</h1>
+              <div
+                class="layout column align-center"
+              >
+                <v-img
+                  src="@/assets/mola.png"
+                  height="120px"
+                  width="120px"
+                  />
+                <h1
+                  class="ma-4"
+                >
+                  To Do App
+                </h1>
               </div>
               <v-alert
                 type="error"
@@ -22,22 +46,28 @@
                   label="Email"
                   type="text"
                   :rules="emailRules"
-                  v-model="email"/>
+                  v-model="email"
+                />
                 <v-text-field
                   label="Password"
                   type="password"
                   :rules="passwordRules"
-                  v-model="password"/>
+                  v-model="password"
+                />
               </v-form>
             </v-card-text>
             <v-card-actions>
-                <v-btn icon @click="signInWithGoogle">
-                  <v-icon color="red">fab fa-google</v-icon>
+                <v-btn
+                  icon
+                  @click="signInWithGoogle"
+                >
+                  <v-icon
+                    color="red"
+                  >
+                    fab fa-google
+                  </v-icon>
                 </v-btn>
-                <v-btn icon>
-                  <v-icon color="light-blue">fab fa-twitter</v-icon>
-                </v-btn>
-                <v-spacer />
+                <v-spacer/>
                 <v-btn
                   class="white--text"
                   color="green"
