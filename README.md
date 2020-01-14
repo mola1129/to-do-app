@@ -1,29 +1,15 @@
-# to-do-app
+# Basic Todo App
 
-## Project setup
-```
-yarn install
-```
+<p align="center">
+<img src="https://user-images.githubusercontent.com/43176456/72336556-5abdb380-3704-11ea-85f6-148871d8d332.png" width="80px">
+<a>　</a>
+<img src="https://user-images.githubusercontent.com/43176456/72336963-1252c580-3705-11ea-9ed9-831197527397.png" width="150px">
+</p>
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+##  App URL
 
-### Compiles and minifies for production
-```
-yarn build
-```
+### **https://to-do-app-d32ae.firebaseapp.com/**
 
-### Run your unit tests
-```
-yarn test:unit
-```
+## License
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- [MIT License](./LICENSE)
