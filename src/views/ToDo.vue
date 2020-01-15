@@ -6,7 +6,7 @@
         align="center"
       >
         <v-col cols="8">
-          <h1>{{ user.email }}</h1>
+          {{ user.email }}
         </v-col>
       </v-row>
       <v-row
