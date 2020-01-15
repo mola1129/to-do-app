@@ -1,13 +1,32 @@
 <template>
-  <v-container class="fill-height" fluid>
+  <v-container
+    class="fill-height"
+    fluid
+  >
     <!-- style is for Vuetify's bug (https://github.com/vuetifyjs/vuetify/issues/9773) -->
-    <v-row align="center" justify="center" style="max-width: initial">
-      <v-col cols="12" sm="8" md="4" lg="4">
+    <v-row
+      align="center"
+      justify="center"
+      style="max-width: initial"
+    >
+      <v-col
+        cols="12"
+        sm="8"
+        md="4"
+        lg="4"
+      >
         <v-card class="elevation-1 pa-3">
           <v-card-text>
             <div class="layout column align-center">
-              <v-icon color="primary" x-large>fas fa-user-plus</v-icon>
-              <h1 class="ma-5">Sign Up</h1>
+              <v-icon
+                color="primary"
+                x-large
+              >
+                fas fa-user-plus
+              </v-icon>
+              <h1 class="ma-5">
+                Sign Up
+              </h1>
             </div>
             <v-alert
               type="error"
@@ -15,9 +34,7 @@
             >
               The email address is already in use.
             </v-alert>
-            <v-form
-              v-model="valid"
-            >
+            <v-form v-model="valid">
               <v-text-field
                 label="Email"
                 type="text"

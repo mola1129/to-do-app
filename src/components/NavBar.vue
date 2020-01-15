@@ -6,7 +6,12 @@
     elevation="1"
   >
     <div class="d-flex align-center">
-      <v-btn icon large href="https://github.com/mola1129/to-do-app" target="_blank">
+      <v-btn
+        icon
+        large
+        href="https://github.com/mola1129/to-do-app"
+        target="_blank"
+      >
         <v-icon>fab fa-github</v-icon>
       </v-btn>
     </div>
