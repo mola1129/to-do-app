@@ -7,7 +7,7 @@
       >
         <to-do-item
           :title="todo.title"
-          @delete="deleteItem(todo.id)"
+          @clickDeleteButton="deleteItem(todo.id)"
         />
       </li>
     </ul>
