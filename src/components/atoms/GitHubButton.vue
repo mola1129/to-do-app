@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: 'GitHubButton',
   data() {
     return {
       url: 'https://github.com/mola1129/to-do-app',

@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import Firebase from '@/firebase';
 import SignInCard from '@/components/organisms/SignInCard.vue';
 
 export default {

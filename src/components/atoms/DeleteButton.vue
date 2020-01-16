@@ -11,6 +11,7 @@
 <script>
 export default {
   methods: {
+    name: 'DeleteButton',
     onClickDeleteButton() {
       this.$emit('clickDeleteButton');
     },
