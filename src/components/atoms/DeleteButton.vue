@@ -2,9 +2,7 @@
   <div class="delete-button"
        @click="onClickDeleteButton"
   >
-    <v-icon
-      color="red lighten-2"
-    >
+    <v-icon color="red lighten-2">
       far fa-times-circle
     </v-icon>
   </div>
