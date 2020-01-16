@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import AuthButton from '@/components/AuthButton.vue';
+import AuthButton from '@/components/molecules/AuthButton.vue';
 import GitHubButton from '@/components/atoms/GitHubButton.vue';
 
 export default {

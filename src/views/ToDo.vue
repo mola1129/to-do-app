@@ -36,7 +36,7 @@
 <script>
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
-import ToDoList from '@/components/ToDoList.vue';
+import ToDoList from '@/components/organisms/ToDoList.vue';
 import Firebase from '@/firebase';
 
 export default {
