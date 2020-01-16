@@ -10,8 +10,8 @@
 
 <script>
 export default {
+  name: 'DeleteButton',
   methods: {
-    name: 'DeleteButton',
     onClickDeleteButton() {
       this.$emit('clickDeleteButton');
     },
