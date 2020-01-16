@@ -22,7 +22,9 @@ export default {
   components: {
     ToDoItem,
   },
-  props: ['todos'],
+  props: {
+    todos: Array,
+  },
   methods: {
     deleteItem(todoId) {
       this.$emit('delete', todoId);

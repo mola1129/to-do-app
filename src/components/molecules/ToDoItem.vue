@@ -19,7 +19,9 @@ export default {
   components: {
     DeleteButton,
   },
-  props: ['title'],
+  props: {
+    title: String,
+  },
   methods: {
     onClickDeleteButton() {
       this.$emit('clickDeleteButton');
