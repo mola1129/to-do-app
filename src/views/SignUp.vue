@@ -15,7 +15,7 @@
         md="4"
         lg="4"
       >
-        <SignUpCard/>
+        <SignUpCard @clickSignUp="$router.push('/todo')"/>
       </v-col>
     </v-row>
   </v-container>

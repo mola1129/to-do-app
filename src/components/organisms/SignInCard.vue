@@ -81,9 +81,7 @@ export default {
     signInWithEmail() {
       this.isLoading = true;
       Firebase.signInWithEmail(this.email, this.password).then(() => {
-        setTimeout(() => {
-          this.$router.push('/todo');
-        }, 800);
+        this.$emit('clickSignIn');
       }).catch((e) => {
         this.isExistUser = false;
         this.isLoading = false;
@@ -91,7 +89,7 @@ export default {
     },
     signInWithGoogle() {
       Firebase.signInWithGoogle().then(() => {
-        this.$router.push('/todo');
+        this.$emit('clickSignIn');
       });
     },
   },

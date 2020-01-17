@@ -79,7 +79,7 @@ export default {
       this.isLoading = true;
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
         (user) => {
-          this.$router.push('/todo');
+          this.$emit('clickSignUp');
         },
       ).catch(
         (e) => {
