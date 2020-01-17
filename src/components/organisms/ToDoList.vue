@@ -7,7 +7,7 @@
       >
         <to-do-item
           :title="todo.title"
-          @delete="deleteItem(todo.id)"
+          @clickDeleteButton="deleteItem(todo.id)"
         />
       </li>
     </ul>
@@ -15,14 +15,16 @@
 </template>
 
 <script>
-import ToDoItem from '@/components/ToDoItem.vue';
+import ToDoItem from '@/components/molecules/ToDoItem.vue';
 
 export default {
   name: 'ToDoList',
   components: {
     ToDoItem,
   },
-  props: ['todos'],
+  props: {
+    todos: Array,
+  },
   methods: {
     deleteItem(todoId) {
       this.$emit('delete', todoId);

@@ -5,24 +5,26 @@
             {{ title }}
           </v-col>
           <v-col cols="2" sm="1">
-            <v-icon
-              color="red lighten-2"
-              @click="deleteItem()"
-            >
-              far fa-times-circle
-            </v-icon>
+            <DeleteButton @clickDeleteButton="onClickDeleteButton"/>
           </v-col>
       </v-card-title>
     </v-card>
 </template>
 
 <script>
+import DeleteButton from '@/components/atoms/DeleteButton.vue';
+
 export default {
   name: 'ToDoItem',
-  props: ['title'],
+  components: {
+    DeleteButton,
+  },
+  props: {
+    title: String,
+  },
   methods: {
-    deleteItem() {
-      this.$emit('delete');
+    onClickDeleteButton() {
+      this.$emit('clickDeleteButton');
     },
   },
 };

@@ -6,25 +6,10 @@
         align="center"
       >
         <v-col cols="8">
-          {{ user.email }}
+          {{ this.getUserInfo.email }}
         </v-col>
       </v-row>
-      <v-row
-        justify="center"
-        align="center"
-      >
-        <v-col cols="7">
-          <v-text-field
-            v-model="newItem"
-            placeholder="New To Do"
-          />
-        </v-col>
-        <v-col cols="1">
-          <v-btn @click="addItem">
-            Add
-          </v-btn>
-        </v-col>
-      </v-row>
+      <AddToDoItemBar @clickAddButton="addItem"/>
     </v-container>
     <to-do-list
       :todos="todos"
@@ -36,20 +21,20 @@
 <script>
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
-import ToDoList from '@/components/ToDoList.vue';
+import { mapGetters } from 'vuex';
+import ToDoList from '@/components/organisms/ToDoList.vue';
 import Firebase from '@/firebase';
+import AddToDoItemBar from '@/components/molecules/AddToDoItemBar.vue';
 
 export default {
   name: 'todo',
   data() {
     return {
-      newItem: '',
       todos: [],
     };
   },
   created() {
-    const db = firebase.firestore();
-    const todosRef = db.collection('users').doc(this.user.uid).collection('todos');
+    const todosRef = Firebase.getCollectionReference(this.getUserInfo.uid);
     todosRef.orderBy('time', 'desc').onSnapshot((doc) => {
       const newTodos = [];
       doc.docs.forEach((d) => {
@@ -64,21 +49,19 @@ export default {
     });
   },
   computed: {
-    user() {
-      return this.$store.getters.getUserInfo;
-    },
+    ...mapGetters(['getUserInfo']),
   },
   methods: {
-    addItem() {
-      if (this.newItem === '') { return; }
-      Firebase.addTodoItem(this.user.uid, this.newItem);
-      this.newItem = '';
+    addItem(newItem) {
+      if (newItem === '') { return; }
+      Firebase.addTodoItem(this.getUserInfo.uid, newItem);
     },
     deleteItem(todoId) {
-      Firebase.deleteTodoItem(this.user.uid, todoId);
+      Firebase.deleteTodoItem(this.getUserInfo.uid, todoId);
     },
   },
   components: {
+    AddToDoItemBar,
     ToDoList,
   },
 };
