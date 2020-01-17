@@ -25,7 +25,7 @@ export default Vue.extend({
   },
   methods: {
     signOut() {
-      Firebase.logout();
+      Firebase.signOut();
     },
   },
 });

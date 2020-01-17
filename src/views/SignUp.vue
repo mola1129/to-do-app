@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
 import SignUpCard from '@/components/organisms/SignUpCard.vue';
 
 export default {

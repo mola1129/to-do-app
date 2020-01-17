@@ -22,21 +22,15 @@ export default {
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
   },
-  loginWithEmail(email:string, password:string) {
+  signInWithEmail(email:string, password:string) {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   },
-  loginWithGoogle() {
+  signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
     return firebase.auth().signInWithPopup(provider);
   },
-  logout() {
-    firebase.auth().signOut().then(
-      (user) => {
-      },
-    ).catch(
-      (e) => {
-      },
-    );
+  signOut() {
+    return firebase.auth().signOut();
   },
   onAuth() {
     firebase.auth().onAuthStateChanged((user) => {
@@ -45,21 +39,20 @@ export default {
       store.commit('onUserStatusChanged', !(currentUser == null));
     });
   },
-  addTodoItem(userId:string, title:string) {
+  getCollectionReference(userId:string) {
     const db = firebase.firestore();
-    const todosRef = db.collection('users').doc(userId).collection('todos');
+    return db.collection('users').doc(userId).collection('todos');
+  },
+  addTodoItem(userId:string, title:string) {
+    const todosRef = this.getCollectionReference(userId);
     const time = Date.now();
-    todosRef.add({
+    return todosRef.add({
       title, time,
-    })
-      .then((docRef) => {
-      })
-      .catch((error) => {
-      });
+    });
   },
   deleteTodoItem(userId:string, todoId: string) {
     const db = firebase.firestore();
-    const todosRef = db.collection('users').doc(userId).collection('todos').doc(todoId);
-    todosRef.delete();
+    const todoItemRef = this.getCollectionReference(userId).doc(todoId);
+    return todoItemRef.delete();
   },
 };

@@ -6,7 +6,7 @@
         align="center"
       >
         <v-col cols="8">
-          {{ user.email }}
+          {{ this.getUserInfo.email }}
         </v-col>
       </v-row>
       <AddToDoItemBar @clickAddButton="addItem"/>
@@ -21,6 +21,7 @@
 <script>
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
+import { mapGetters } from 'vuex';
 import ToDoList from '@/components/organisms/ToDoList.vue';
 import Firebase from '@/firebase';
 import AddToDoItemBar from '@/components/molecules/AddToDoItemBar.vue';
@@ -33,8 +34,7 @@ export default {
     };
   },
   created() {
-    const db = firebase.firestore();
-    const todosRef = db.collection('users').doc(this.user.uid).collection('todos');
+    const todosRef = Firebase.getCollectionReference(this.getUserInfo.uid);
     todosRef.orderBy('time', 'desc').onSnapshot((doc) => {
       const newTodos = [];
       doc.docs.forEach((d) => {
@@ -49,9 +49,7 @@ export default {
     });
   },
   computed: {
-    user() {
-      return this.$store.getters.getUserInfo;
-    },
+    ...mapGetters(['getUserInfo']),
   },
   methods: {
     addItem(newItem) {

@@ -14,7 +14,7 @@
         </div>
         <v-alert
           type="error"
-          v-if="!isExist"
+          v-if="!isExistUser"
         >
           The email or password is incorrect.
         </v-alert>
@@ -46,7 +46,7 @@
         <v-btn
           class="white--text"
           color="green"
-          @click="signIn"
+          @click="signInWithEmail"
           :loading="isLoading"
           :disabled="!valid"
         >
@@ -67,7 +67,7 @@ export default {
       email: '',
       password: '',
       isLoading: false,
-      isExist: true,
+      isExistUser: true,
       valid: true,
       emailRules: [
         v => !!v || '',
@@ -78,19 +78,19 @@ export default {
     };
   },
   methods: {
-    signIn() {
+    signInWithEmail() {
       this.isLoading = true;
-      Firebase.loginWithEmail(this.email, this.password).then(() => {
+      Firebase.signInWithEmail(this.email, this.password).then(() => {
         setTimeout(() => {
           this.$router.push('/todo');
         }, 800);
       }).catch((e) => {
-        this.isExist = false;
+        this.isExistUser = false;
         this.isLoading = false;
       });
     },
     signInWithGoogle() {
-      Firebase.loginWithGoogle().then(() => {
+      Firebase.signInWithGoogle().then(() => {
         this.$router.push('/todo');
       });
     },
