@@ -1,6 +1,6 @@
 <template>
   <v-app>
-      <nav-bar/>
+      <NavBar :status="this.isSignedIn" @clickSignOutButton="signOut"/>
       <v-content>
         <transition name="fade">
           <router-view/>
@@ -11,13 +11,23 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { mapGetters } from 'vuex';
 import NavBar from '@/components/organisms/NavBar.vue';
+import Firebase from '@/firebase';
 
 export default Vue.extend({
   name: 'App',
   components: { NavBar },
   data: () => ({
   }),
+  computed: {
+    ...mapGetters(['isSignedIn']),
+  },
+  methods: {
+    signOut() {
+      Firebase.logout();
+    },
+  },
 });
 </script>
 
