@@ -6,19 +6,55 @@
     elevation="1"
   >
     <div class="d-flex align-center">
-      <GitHubButton />
+      <GitHubButton :href="url"/>
     </div>
     <v-spacer/>
-    <auth-button/>
+    <template v-if="!userStatus">
+      <v-btn
+        text
+        to="/signin"
+      >
+        <span>Sign In</span>
+      </v-btn>
+      <v-btn
+        text
+        to="/signup"
+      >
+        <span>Sign Up</span>
+      </v-btn>
+    </template>
+    <template v-else>
+      <v-btn
+        text
+        @click="doLogout"
+      >
+        <span>Log Out</span>
+      </v-btn>
+    </template>
   </v-app-bar>
 </template>
 
 <script>
-import AuthButton from '@/components/molecules/AuthButton.vue';
 import GitHubButton from '@/components/atoms/GitHubButton.vue';
+import Firebase from '@/firebase';
 
 export default {
   name: 'NavBar',
-  components: { AuthButton, GitHubButton },
+  components: { GitHubButton },
+  data() {
+    return {
+      url: 'https://github.com/mola1129/to-do-app',
+    };
+  },
+  computed: {
+    userStatus() {
+      return this.$store.getters.isSignedIn;
+    },
+  },
+  methods: {
+    doLogout() {
+      Firebase.logout();
+    },
+  },
 };
 </script>

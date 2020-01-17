@@ -3,7 +3,7 @@
     <v-btn
       icon
       large
-      :href="url"
+      :href="href"
       target="_blank"
     >
       <v-icon>fab fa-github</v-icon>
@@ -14,10 +14,8 @@
 <script>
 export default {
   name: 'GitHubButton',
-  data() {
-    return {
-      url: 'https://github.com/mola1129/to-do-app',
-    };
+  props: {
+    href: String,
   },
 };
 </script>
