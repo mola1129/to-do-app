@@ -40,11 +40,9 @@ export default {
   },
   onAuth() {
     firebase.auth().onAuthStateChanged((user) => {
-      const currentUser = user || {
-        uid: undefined,
-      };
+      const currentUser = user;
       store.commit('onAuthStateChanged', currentUser);
-      store.commit('onUserStatusChanged', currentUser.uid);
+      store.commit('onUserStatusChanged', !(currentUser == null));
     });
   },
   addTodoItem(userId:string, title:string) {
