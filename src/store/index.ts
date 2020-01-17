@@ -3,15 +3,17 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+const emptyUser = { email: '', uid: '' };
+
 export default new Vuex.Store({
   state: {
-    user: {},
+    user: emptyUser,
     status: false,
   },
   mutations: {
     onAuthStateChanged(state, user) {
       // user info
-      state.user = user;
+      state.user = (user == null) ? emptyUser : user;
     },
     onUserStatusChanged(state, status) {
       // user login status
