@@ -54,10 +54,10 @@ export default {
   methods: {
     addItem(newItem) {
       if (newItem === '') { return; }
-      Firebase.addTodoItem(this.user.uid, newItem);
+      Firebase.addTodoItem(this.getUserInfo.uid, newItem);
     },
     deleteItem(todoId) {
-      Firebase.deleteTodoItem(this.user.uid, todoId);
+      Firebase.deleteTodoItem(this.getUserInfo.uid, todoId);
     },
   },
   components: {
