@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import GitHubButton from '@//components/atoms/GitHubButton.vue';
+import GitHubButton from '@/components/atoms/GitHubButton.vue';
 
 describe('GitHubButton', () => {
   it('props', () => {
