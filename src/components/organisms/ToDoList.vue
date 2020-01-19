@@ -23,7 +23,10 @@ export default {
     ToDoItem,
   },
   props: {
-    todos: Array,
+    todos: {
+      type: Array,
+      required: true,
+    },
   },
   methods: {
     deleteItem(todoId) {
