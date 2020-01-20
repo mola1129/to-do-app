@@ -15,7 +15,10 @@
 export default {
   name: 'GitHubButton',
   props: {
-    href: String,
+    href: {
+      type: String,
+      required: true,
+    },
   },
 };
 </script>

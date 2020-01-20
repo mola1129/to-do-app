@@ -41,7 +41,10 @@ export default {
   name: 'NavBar',
   components: { GitHubButton },
   props: {
-    status: Boolean,
+    status: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {

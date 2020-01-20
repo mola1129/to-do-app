@@ -20,7 +20,10 @@ export default {
     DeleteButton,
   },
   props: {
-    title: String,
+    title: {
+      type: String,
+      required: true,
+    },
   },
   methods: {
     onClickDeleteButton() {
