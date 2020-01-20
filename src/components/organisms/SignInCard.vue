@@ -42,6 +42,13 @@
             fab fa-google
           </v-icon>
         </v-btn>
+        <v-btn outlined
+               small
+               color="primary"
+               @click="inputTestAccount()"
+        >
+          Test
+        </v-btn>
         <v-spacer/>
         <v-btn
           class="white--text"
@@ -91,6 +98,10 @@ export default {
       Firebase.signInWithGoogle().then(() => {
         this.$emit('clickSignIn');
       });
+    },
+    inputTestAccount() {
+      this.email = 'to-do-app-admin@email.com';
+      this.password = 'to-do-app';
     },
   },
 };
