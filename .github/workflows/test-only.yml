@@ -12,12 +12,13 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
       - name: Cache node modules
+        id: cache-modules
         uses: actions/cache@v1
         with:
           path: ./node_modules
-          key: ${{ runner.os }}-to-do-app-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          key: ${{ runner.os }}-todoapp-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
       - name: Install Dependencies
-        if: steps.cache-primes.outputs.cache-hit != 'true'
+        if: steps.cache-modules.outputs.cache-hit != 'true'
         run: yarn install
       - name: Run test
         run: yarn test:unit
