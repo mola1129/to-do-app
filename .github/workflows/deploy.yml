@@ -29,10 +29,10 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Cache node modules
-          uses: actions/cache@v1
-          with:
-            path: ${{ steps.yarn-cache.outputs.dir }}
-            key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - name: Build
         run: yarn build
       - name: Archive Production Artifact

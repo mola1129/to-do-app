@@ -12,10 +12,10 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
       - name: Cache node modules
-          uses: actions/cache@v1
-          with:
-            path: ${{ steps.yarn-cache.outputs.dir }}
-            key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - name: Install Dependencies
         if: steps.cache-primes.outputs.cache-hit != 'true'
         run: yarn install
